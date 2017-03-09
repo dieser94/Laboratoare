@@ -14,6 +14,7 @@ Implementati o propagare ciclica de tip gossiping folosind bariere.
   * Folositi una din barierele reentrante din modulul barrier.
   * Pentru a simplifica implementarea, e folosit un numar fix de cicluri,
     negarantand astfel convergenta tutoror nodurilor la acelasi minim.
+    Dan Adrian was here ! ....
 """
 
 import sys
