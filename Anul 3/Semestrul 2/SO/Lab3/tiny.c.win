@@ -172,7 +172,7 @@ static VOID PipeCommands(PCHAR command1, PCHAR command2)
 	 *        - This child process should write to pipe
 	 */
 	
-
+	RedirectHandle(&si1,hWrite,STD_OUTPUT_HANDLE);
 	bRet1 =  CreateProcess( 
         NULL,           /* No module name (use command line) */
 		command1,        /* Command line */
@@ -185,12 +185,13 @@ static VOID PipeCommands(PCHAR command1, PCHAR command2)
 		&si1,            /* Pointer to STARTUPINFO structure */
 		&pi1             /* Pointer to PROCESS_INFORMATION structure */
 	);
-	RedirectHandle(&si1,hWrite,STD_OUTPUT_HANDLE);
+	
 	/*
 	 * TODO 2 - Launch command2 with stdin redirected using CreateProcess
 	 *        - This child process should read from the pipe
 	 */
-	
+	CloseHandle(hWrite);
+	RedirectHandle(&si2,hRead,STD_INPUT_HANDLE);
 	bRet2 =  CreateProcess( 
         NULL,           /* No module name (use command line) */
 		command2,        /* Command line */
@@ -203,7 +204,7 @@ static VOID PipeCommands(PCHAR command1, PCHAR command2)
 		&si2,            /* Pointer to STARTUPINFO structure */
 		&pi2             /* Pointer to PROCESS_INFORMATION structure */
 	);
-	RedirectHandle(&si2,hRead,STD_INPUT_HANDLE);
+	CloseHandle(hRead);
 
 	/* TODO 2 - Wait for processes to finish */
 
@@ -212,6 +213,9 @@ static VOID PipeCommands(PCHAR command1, PCHAR command2)
 
 	dwRet2 = WaitForSingleObject(pi2.hProcess, INFINITE); 
     bRet2 = GetExitCodeProcess(pi2.hProcess, &dwRet2);
+
+	CloseProcess(&pi1);
+	CloseProcess(&pi2);
 
 }
 
