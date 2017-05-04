@@ -1,0 +1,24 @@
+1. Login to fep.grid.pub.ro
+ssh username@fep.grid.pub.ro
+
+2. Login to a node with OpenCL SDK (ibm-dp.q, ibm-dp48.q)
+qlogin -q ibm-dp.q
+
+3a. Use the NVIDIA OpenCL module
+module load libraries/cuda
+
+3b. Use the INTEL OpenCL module
+module load utilities/opencl
+
+4a. In order to compile use provided Makefile  
+cd lab1X_skl && make
+
+4b. In order to compile use provided CMakeLists.txt
+cd lab1X_skl/build && cmake .. && make
+
+5. To run use the qsub command
+binary is in directory build/, ./lab1X_bin
+kernel file should be next to file, build/skl_device.cl
+
+cd build/
+qsub -q ibm-dp.q -cwd -b y ./lab1X_bin
