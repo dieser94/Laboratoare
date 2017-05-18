@@ -27,6 +27,32 @@ char *prompt = "so-lab12";
 #define TODO6
 #define TODO7
 
+void listdir(const char *name, int level)
+{
+    DIR *dir;
+    struct dirent *entry;
+
+    if (!(dir = opendir(name)))
+        return;
+    if (!(entry = readdir(dir)))
+        return;
+
+    do {
+        if (entry->d_type == DT_DIR) {
+            char path[1024];
+            int len = snprintf(path, sizeof(path)-1, "%s/%s", name, entry->d_name);
+            path[len] = 0;
+            if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
+                continue;
+            printf("%*s[%s]\n", level*2, "", entry->d_name);
+            listdir(path, level + 1);
+        }
+        else
+            printf("%*s- %s\n", level*2, "", entry->d_name);
+    } while (entry = readdir(dir));
+    closedir(dir);
+}
+
 int main(void)
 {
 	char line[MAX_LINE_SIZE];
@@ -148,25 +174,7 @@ int main(void)
 			struct dirent *de;
 			/* Recursively print files starting with arg1 */
 			arg1 = strtok(NULL, delim);
-recursive:
-			level++;
-			dirp = opendir(arg1);	
-			DIE(dirp == NULL, "dirname");
-
-			printf("-- Reading directory %s\n\n", arg1);
-
-			while (1) {
-
-				de = readdir(dirp);
-				if (de == NULL)
-					break;
-				else if( opendir(arg1) == 0){
-
-					goto recursive;
-				}
-				printf("	%s \n", de->d_name);
-				
-				}
+			listdir(arg1,0);
 			}
 #endif
 
