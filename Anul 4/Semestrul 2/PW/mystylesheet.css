@@ -1,14 +1,17 @@
 header {
     background-color: rgb(138, 136, 136);
     top: 0;
+    padding: 4px;
 }
 
 section {
     background-color: rgb(14, 59, 237);
+    padding: inherit;
 }
 
 article {
     background-color: rgb(87, 213, 235);
+    padding: inherit;
 }
 
 
@@ -22,6 +25,7 @@ footer {
     position: fixed;
     bottom: 0;
     width: inherit;
+    padding: inherit;
 }
 
 header h1 {
@@ -36,6 +40,7 @@ nav {
     left: 0;
     background-color: rgb(63, 63, 63); /* Black*/
     min-width: 100px;
+    padding: inherit;
 }
 
 nav a {
@@ -71,3 +76,8 @@ body {
     margin: 0 auto;
     
 }
+
+
+
+
+
