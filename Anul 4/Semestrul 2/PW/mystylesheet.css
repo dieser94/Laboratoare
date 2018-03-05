@@ -25,9 +25,8 @@ footer {
     position: fixed;
     bottom: 0;
     width: inherit;
-    min-width: 400px;
-    overflow: auto;
-
+    min-width: 200px;
+    z-index: 1;
 }
 
 header h1 {
@@ -78,8 +77,3 @@ body {
     margin: 0 auto;
     
 }
-
-
-
-
-
