@@ -1,16 +1,16 @@
 header {
-    background-color: rgb(138, 136, 136);
+    background-color: hsl(239, 1%, 85%);
     top: 0;
     padding: 4px;
 }
 
 section {
-    background-color: rgb(14, 59, 237);
+    background-color: hsl(239, 59%, 37%);
     padding: inherit;
 }
 
 article {
-    background-color: rgb(87, 213, 235);
+    background-color: hsl(239, 10%, 38%);
     padding: inherit;
 }
 
@@ -21,7 +21,7 @@ article iframe {
 }
 
 footer {
-    background-color: rgb(31, 214, 150);    
+    background-color: hsl(239, 25%, 75%);    
     position: fixed;
     bottom: 0;
     width: inherit;
@@ -39,7 +39,7 @@ nav {
     position: fixed; /* Stay in place */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color: rgb(63, 63, 63); /* Black*/
+    background-color: hsl(239, 65%, 23%); /* Black*/
     overflow: auto;
     overflow-x: hidden;
 }
@@ -65,7 +65,7 @@ nav a:hover {
 }
 
 body {
-	background-color: #e9e8e8;
+	background-color: #ffffff;
     font-family: 'Mina', sans-serif;
     align-content: 'center';
     min-width: 400px;
